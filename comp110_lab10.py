@@ -4,16 +4,27 @@ Module: comp110_lab10
 Code for COMP110 Lab Session 10 (Dictionaries and Elections)
 
 Authors:
-1) Name - USD Email Address
-2) Name - USD Email Address
+1) luke chiovare lchiovare@sandiego.edu
+2) Natsuki Mogi nmogi@sandiego.edu
 """
 
 
-
 def get_election_results(election_filename):
-    """ Replace this with a docstring comment with the correct format. """
+    """ Will read in the election results and make it easier for the user to read in an ordinary fashion
+    parameters: Election_filename
+    """
+    d = {}
+    f = open(election_filename, 'r')
+    f.readline()
+    for line in f:
+        fields = line.split('USA2000.txt')
+        name = fields[0:4]
+        d[name] += 1
+    return d
 
-    return None  # replace this line with your implemenation
+
+q = ("USA2000.txt")
+print(q.values)
 
 
 def main():
@@ -27,7 +38,6 @@ def main():
     # To Do: Step 1 - Call your get_election_results function to get a
     # dictionary with data. The code should go right below this comment.
 
-
     region_name = input("Enter the name of the state you want to graph: ")
 
     # To Do: Step 2 - Validate that the user-entered region name is a valid one
@@ -36,7 +46,6 @@ def main():
     # they enter a valid one. Again, the code should go immediately after this
     # comment.
     # Hint: the "in" operator will be very helpful here.
-
 
     # To Do: Step 3 - Use pyplot's pie function to make a pie chart out of the
     # election data for the user-entered region.
