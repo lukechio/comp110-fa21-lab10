@@ -9,6 +9,9 @@ Authors:
 """
 
 
+import comp110_lab10
+
+
 def get_election_results(election_filename):
     """ Will read in the election results and make it easier for the user to read in an ordinary fashion
     parameters: Election_filename
@@ -17,14 +20,19 @@ def get_election_results(election_filename):
     f = open(election_filename, 'r')
     f.readline()
     for line in f:
-        fields = line.split('USA2000.txt')
-        name = fields[0:4]
-        d[name] += 1
+        fields = line.split(',')
+        name = fields[0]
+        republican = int(fields[1])
+        democrat = int(fields[2])
+        other = int(fields[3])
+        vote_tuple = (republican, democrat, other)
+        d[name] = vote_tuple
     return d
 
 
-q = ("USA2000.txt")
-print(q.values)
+# q = get_election_results("fake_votes.txt")
+# print(q)
+# exit()
 
 
 def main():
@@ -37,6 +45,7 @@ def main():
 
     # To Do: Step 1 - Call your get_election_results function to get a
     # dictionary with data. The code should go right below this comment.
+    get_election_results = {vote_tuple}
 
     region_name = input("Enter the name of the state you want to graph: ")
 
