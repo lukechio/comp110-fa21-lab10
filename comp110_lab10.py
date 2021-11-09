@@ -9,7 +9,8 @@ Authors:
 """
 
 
-import comp110_lab10
+from matplotlib import colors
+import matplotlib.pyplot as pp
 
 
 def get_election_results(election_filename):
@@ -45,7 +46,7 @@ def main():
 
     # To Do: Step 1 - Call your get_election_results function to get a
     # dictionary with data. The code should go right below this comment.
-    get_election_results = {vote_tuple}
+    results = get_election_results(election_filename)
 
     region_name = input("Enter the name of the state you want to graph: ")
 
@@ -55,6 +56,24 @@ def main():
     # they enter a valid one. Again, the code should go immediately after this
     # comment.
     # Hint: the "in" operator will be very helpful here.
+    while region_name not in results:
+        print("Invalid state name, Try again!")
+        if region_name in results:
+            break
+
+    (r, d, o) = results[region_name]
+    f = open(election_filename, 'r')
+    headers = f.readline()
+    headers = headers.split(',')
+    rep = headers[1]
+    dem = headers[2]
+    oth = headers[3]
+    pie_labels = (rep, dem, oth)
+    pie_colors = ("red", "blue", "black")
+    data = (r, d, o)
+    pp.pie(data, labels=pie_labels, colors=pie_colors)
+    pp.title(region_name)
+    pp.show()
 
     # To Do: Step 3 - Use pyplot's pie function to make a pie chart out of the
     # election data for the user-entered region.
